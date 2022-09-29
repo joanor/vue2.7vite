@@ -22,7 +22,7 @@ import { ref } from 'vue'
 import LayoutHeader from './components/LayoutHeader.vue'
 import LayoutBreadCrumb from './components/LayoutBreadCrumb.vue'
 import LayoutContainer from './components/LayoutContainer.vue'
-const cachedViews = ref(true)
+const cachedViews = ref('')
 </script>
 
 <style lang="scss" scoped></style>

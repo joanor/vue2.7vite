@@ -3,8 +3,13 @@ import { Message } from 'element-ui'
 import Vue from 'vue'
 import store2 from 'store2'
 
+const succesCodes = ['0', '200', 0, 200]
+
 export const http = createAxios({
-  baseURL: process.env.NODE_ENV === 'development',
+  baseURL:
+    import.meta.env.MODE === 'development'
+      ? import.meta.env.VITE_APP_BASEAPI_DEV
+      : import.meta.env.VITE_APP_BASEAPI_PROD,
   timeout: 30000,
   transform: {
     transformRequestHook: (response, options) => {
@@ -21,8 +26,8 @@ export const http = createAxios({
       const result = response.data
       const { code, message } = result
 
-      const hasSuccess = code === 0
-      if (hasSuccess) return result.data ?? ''
+      const hasSuccess = succesCodes.indexOf(code) > -1
+      if (hasSuccess) return (result.data ?? result) || ''
       else {
         const [errMessage] = checkStatus(code, message)
         Message.error(errMessage)
@@ -31,7 +36,7 @@ export const http = createAxios({
         )
       }
     },
-    requestCatchHook: (config, options) => {
+    requestInterceptors: (config, options) => {
       const token = store2.get('AUTH_TOKEN')
       if (token && config?.requestOptions?.withToken !== false) {
         config.headers['Authorization'] = options.authenticationScheme

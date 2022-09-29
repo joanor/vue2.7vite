@@ -13,9 +13,9 @@ router.beforeEach(async (to, from, next) => {
   window.NProgress.start()
   if (store2.get(SYS_CONSTANT.AUTH_TOKEN)) {
     if (to.path === '/login') next()
-    // else {
-    //   if(isEmpty())
-    // }
+    else {
+      next()
+    }
   } else {
     if (WHITE_ROUTELIST.indexOf(to.path) > -1) next()
     else next('/login')

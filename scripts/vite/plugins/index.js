@@ -1,6 +1,7 @@
 import vue from '@vitejs/plugin-vue2'
 import legacy from '@vitejs/plugin-legacy'
 import { configCompressPlugin } from './compress'
+import { configMockServerPlugin } from './mockServer'
 import { configUnocssPlugin } from './unocss'
 
 import AutoImport from 'unplugin-auto-import/vite'
@@ -46,6 +47,9 @@ export function createVitePlugins(viteEnv, isBuild) {
 
   // @vitejs/plugin-legacy
   VITE_LEGACY && isBuild && vitePlugins.push(legacy)
+
+  const mockServerPlugin = configMockServerPlugin(isBuild)
+  !isBuild && mockServerPlugin && vitePlugins.push(mockServerPlugin)
 
   // rollup-plugin-gzip
   const compressPlugin = configCompressPlugin(
