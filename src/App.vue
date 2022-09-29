@@ -6,26 +6,6 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>
-    <HelloWorld msg="Vite + Vue" />
-    <el-button type="primary" size="default">点我</el-button>
-    <el-icon
-      class="mr2 cursor-pointer i-ant-design-fullscreen-outlined"
-      :size="20"
-      color="#000"
-    ></el-icon>
+    <router-view />
   </div>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>

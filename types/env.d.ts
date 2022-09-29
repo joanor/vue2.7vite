@@ -29,6 +29,47 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
+interface Window {
+  NProgress: typeof import('nprogress')
+  dayjs: typeof import('dayjs')
+  readonly config: {
+    projectName: string
+    whiteList: string[]
+    // uaa_url: string
+    // project_url: string
+    // basic_url: string
+    [propName: string]: string | string[]
+  }
+  gsap: typeof import('gsap')
+  Flip: typeof import('gsap/Flip').Flip
+  Power0: {
+    easeIn: AnyFunction
+    easeInOut: AnyFunction
+    easeNone: AnyFunction
+    easeOut: AnyFunction
+  }
+  Power1: {
+    easeIn: AnyFunction
+    easeInOut: AnyFunction
+    easeOut: AnyFunction
+  }
+  Power2: {
+    easeIn: AnyFunction
+    easeInOut: AnyFunction
+    easeOut: AnyFunction
+  }
+  Power3: {
+    easeIn: AnyFunction
+    easeInOut: AnyFunction
+    easeOut: AnyFunction
+  }
+  Power4: {
+    easeIn: AnyFunction
+    easeInOut: AnyFunction
+    easeOut: AnyFunction
+  }
+}
+
 declare type Recordable<T = any> = Record<string, T>
 declare type AnyFunction = (...args: any[]) => any
 declare type ConstructorFunction = new (...args: any[]) => any
